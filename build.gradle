@@ -23,7 +23,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 sourceSets.main.java.srcDirs "src/generated-sources/java"
-sourceSets.main.resources.excludes = ['user.xsd']
+sourceSets.main.resources.excludes = ['car.xsd']
 
 configurations {
     jaxb
@@ -62,7 +62,7 @@ dependencies {
 //        ant.xjc(
 //			destdir: '${jaxbTargetDir}',
 //			package: 'com.roytuts.jaxb',
-//			schema: 'src/main/resources/xsd/user.xsd'
+//			schema: 'src/main/resources/xsd/car.xsd'
 //        )
 //    }
 //}
