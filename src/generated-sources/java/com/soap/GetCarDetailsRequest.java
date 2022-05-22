@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Date;
 
 
 /**
@@ -49,7 +50,7 @@ public class GetCarDetailsRequest {
     protected String model;
     protected Integer id;
     protected String customerName;
-    protected String endDate;
+    protected Date endDate;
 
     /**
      * Gets the value of the model property.
@@ -131,7 +132,7 @@ public class GetCarDetailsRequest {
      *     {@link String }
      *     
      */
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
@@ -143,7 +144,7 @@ public class GetCarDetailsRequest {
      *     {@link String }
      *     
      */
-    public void setEndDate(String value) {
+    public void setEndDate(Date value) {
         this.endDate = value;
     }
 

@@ -8,12 +8,14 @@
 
 package com.soap;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Date;
 
 
 /**
@@ -52,7 +54,8 @@ public class Car {
     protected int id;
     @XmlElement(required = true)
     protected String model;
-    protected String endDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    protected Date endDate;
     protected String customerName;
 
     /**
@@ -103,7 +106,7 @@ public class Car {
      *     {@link String }
      *     
      */
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
@@ -115,7 +118,7 @@ public class Car {
      *     {@link String }
      *     
      */
-    public void setEndDate(String value) {
+    public void setEndDate(Date value) {
         this.endDate = value;
     }
 

@@ -11,68 +11,57 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class CarService {
     @Autowired
-    CarRepository carRepository ;
+    CarRepository carRepository;
 
 
     public List<Car> getCars() {
         List<Car> CarList = new ArrayList<>();
         LocalDateTime currentDate = LocalDateTime.now();
-
-        for (Car car : carRepository.findAll()) {
-            //car.getModel().toLowerCase().contains(name.toLowerCase())
-            if(car.getEndDate()!=null) {
-                if (checkAvailable(car.getEndDate(),currentDate)) {
-
-                    CarList.add(car);
-                }
-            }
-            else
-            {
-                CarList.add(car);
-            }
+        Date out = Date.from(currentDate.atZone(ZoneId.systemDefault()).toInstant());
+        for (Car car : carRepository.getCarByEndDateNullOrEndDateIsBefore(out)) {
+            CarList.add(car);
         }
         return CarList;
     }
 
-    public boolean checkAvailable(String date, LocalDateTime current) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-        try {
-            Date date1 = sdf.parse(date);
-            LocalDateTime date2= LocalDateTime.ofInstant(date1.toInstant(), ZoneId.systemDefault());
+    public Car rentCar(int id, String cusName, Date endDate) {
 
-            if(current.isAfter(date2))
-            {
-                return true;
-            }
-            else return false;
-        }catch (Exception e)
+        Car car = carRepository.findById(id).get();
+        if(!car.equals(null))
         {
-            return false;
-        }
-
-
-    }
-    public Car rentCar(int id, String cusName, String endDate)
-    {
-        for (Car car : carRepository.findAll()) {
-            if (car.getId()==id)
-            {
                 car.setEndDate(endDate);
                 car.setCustomerName(cusName);
                 carRepository.save(car);
-                return car;
-//				return "Success/n car id: "+ car.getId()+" Model: "+car.getModel()
-//						+"Customer name: "+car.getCustomerName()+"Rent end date: "+car.getEndDate();
-            }
-
-
+        return car;
         }
+
         return null;
     }
+
+//    public boolean checkAvailable(Date date, LocalDateTime current) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//
+//        try {
+//
+//            LocalDateTime date2= LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+//
+//            if(current.isAfter(date2))
+//            {
+//                return true;
+//            }
+//            else return false;
+//        }catch (Exception e)
+//        {
+//            return false;
+//        }
+//
+//
+//    }
 }

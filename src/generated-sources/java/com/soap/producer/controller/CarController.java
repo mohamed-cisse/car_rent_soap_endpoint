@@ -5,9 +5,7 @@ import com.soap.producer.service.CarService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,11 +22,11 @@ public class CarController {
         return carService.getCars();
     }
 
-    @RequestMapping("rent/{id}/{cusName}/{endDate}")
-    public Car rentCarRequest(@PathVariable int id, @PathVariable String cusName, @PathVariable String endDate) {
-        if (id != 0 && cusName != null && endDate != null) {
+    @PostMapping("/rent")
+    public Car rentCarRequest(@RequestBody Car car) {
+        if (car.getId() != 0 && car.getCustomerName() != null && car.getEndDate() != null) {
 
-            return carService.rentCar(id, cusName, endDate);
+            return carService.rentCar(car.getId(),  car.getCustomerName(), car.getEndDate());
         } else
             return null;
     }
