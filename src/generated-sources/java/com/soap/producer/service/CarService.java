@@ -7,7 +7,6 @@ import com.soap.producer.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ public class CarService {
     CarRepository carRepository;
 
 
-
     public List<Car> getCars() {
         List<Car> CarList = new ArrayList<>();
         LocalDateTime currentDate = LocalDateTime.now();
@@ -30,11 +28,9 @@ public class CarService {
         for (Car car : carRepository.getCarByEndDateNullOrEndDateIsBefore(out)) {
             CarList.add(car);
         }
-        if(CarList.isEmpty())
-        {
+        if (CarList.isEmpty()) {
             throw new CarNotFoundexption();
-        }else
-        {
+        } else {
             return CarList;
         }
 
@@ -46,21 +42,17 @@ public class CarService {
         //Date currentInstant = Date.from(currentDate.atZone(ZoneId.systemDefault()).toInstant());
 
 
-        if(carRepository.findById(id).isPresent())
-        {
+        if (carRepository.findById(id).isPresent()) {
             Car car = carRepository.findById(id).get();
-            if(checkAvailable(car.getEndDate(),endDate)) {
+            if (checkAvailable(car.getEndDate(), endDate)) {
                 car.setEndDate(endDate);
                 car.setCustomerName(cusName);
                 carRepository.save(car);
                 return car;
-            }else
-            {
+            } else {
                 throw new CarRentedException();
             }
-        }
-        else
-        {
+        } else {
             throw new CarNotFoundexption();
         }
 
@@ -68,21 +60,13 @@ public class CarService {
     }
 
     public boolean checkAvailable(Date date, Date endDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-        if(date== null) {
-
+        if (date == null)
+        {
             return true;
         }
 
-           // LocalDateTime date2= LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
-
-            if(endDate.after(date))
-            {
-                return true;
-            }
-            else return false;
-
+        return endDate.after(date);
 
 
     }

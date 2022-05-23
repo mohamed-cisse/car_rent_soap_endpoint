@@ -18,6 +18,7 @@ public class GlobalExceptionHandler {
         errorResponse.setMessage("Failed No Record Found");
         return errorResponse;
     }
+
     @ExceptionHandler(CarRentedException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
