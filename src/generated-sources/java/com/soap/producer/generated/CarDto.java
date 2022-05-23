@@ -6,7 +6,7 @@
 //
 
 
-package com.soap;
+package com.soap.producer.dto;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -45,7 +45,7 @@ import java.util.Date;
     "endDate"
 })
 @XmlRootElement(name = "getCarDetailsRequest")
-public class GetCarDetailsRequest {
+public class CarDto {
 
     protected String model;
     protected Integer id;
