@@ -1,8 +1,8 @@
 package com.soap.producer.converter;
 
-import com.soap.producer.generated.CarDto;
 import com.soap.producer.errorhandler.MissingRentDataException;
 import com.soap.producer.generated.Car;
+import com.soap.producer.generated.CarDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class Converter {
             car.setCustomerName(carDto.getCustomerName());
             car.setEndDate(carDto.getEndDate());
             car.setModel(carDto.getModel());
-        }else throw new MissingRentDataException();
+        } else throw new MissingRentDataException();
         return car;
     }
 
@@ -41,7 +41,7 @@ public class Converter {
     }
 
     public boolean isEmpty(CarDto dto) {
-        if (dto.getId()<=0  || dto.getCustomerName().isEmpty() || dto.getEndDate() == null) {
+        if (dto.getId() <= 0 || dto.getCustomerName().isEmpty() || dto.getEndDate() == null) {
             throw new MissingRentDataException();
         } else return true;
     }

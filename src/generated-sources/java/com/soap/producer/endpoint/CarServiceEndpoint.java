@@ -28,7 +28,7 @@ public class CarServiceEndpoint {
     }
 
     public boolean isRent(CarDto dto) {
-        return  dto.getCustomerName() != null || dto.getEndDate() != null;
+        return dto.getCustomerName() != null || dto.getEndDate() != null;
     }
 
     public GetCarDetailsResponse mapRequest(GetCarDetailsResponse response, CarDto dto) {

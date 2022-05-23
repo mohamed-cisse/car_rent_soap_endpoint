@@ -28,6 +28,7 @@ public class GlobalExceptionHandler {
         errorResponse.setMessage("Failed car already rented in that date");
         return errorResponse;
     }
+
     @ExceptionHandler(MissingRentDataException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
