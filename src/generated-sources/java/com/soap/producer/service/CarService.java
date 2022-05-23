@@ -1,15 +1,14 @@
 package com.soap.producer.service;
 
-import com.soap.Car;
-import com.soap.producer.errorHandler.CarNotFoundexption;
-import com.soap.producer.errorHandler.CarRentedException;
+import com.soap.producer.errorhandler.CarNotFoundexption;
+import com.soap.producer.errorhandler.CarRentedException;
+import com.soap.producer.generated.Car;
 import com.soap.producer.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,48 +20,31 @@ public class CarService {
 
 
     public List<Car> getCars() {
-        List<Car> CarList = new ArrayList<>();
         LocalDateTime currentDate = LocalDateTime.now();
-        Date out = Date.from(currentDate.atZone(ZoneId.systemDefault()).toInstant());
-
-        for (Car car : carRepository.getCarByEndDateNullOrEndDateIsBefore(out)) {
-            CarList.add(car);
-        }
-        if (CarList.isEmpty()) {
-            throw new CarNotFoundexption();
-        } else {
-            return CarList;
-        }
-
+        Date currentInstant = Date.from(currentDate.atZone(ZoneId.systemDefault()).toInstant());
+        return carRepository.getCarByEndDateNullOrEndDateIsBefore(currentInstant);
     }
 
 
-    public Car rentCar(int id, String cusName, Date endDate) {
+    public Car rentCar(Car car) {
 //        LocalDateTime currentDate = LocalDateTime.now();
         //Date currentInstant = Date.from(currentDate.atZone(ZoneId.systemDefault()).toInstant());
 
-
-        if (carRepository.findById(id).isPresent()) {
-            Car car = carRepository.findById(id).get();
-            if (checkAvailable(car.getEndDate(), endDate)) {
-                car.setEndDate(endDate);
-                car.setCustomerName(cusName);
-                carRepository.save(car);
-                return car;
-            } else {
-                throw new CarRentedException();
-            }
+        Car carTemp = carRepository.findById(car.getId()).orElseThrow(() -> new CarNotFoundexption());
+        if (checkAvailable(carTemp.getEndDate(), car.getEndDate())) {
+            carTemp.setEndDate(car.getEndDate());
+            carTemp.setCustomerName(car.getCustomerName());
+            carRepository.save(carTemp);
+            return car;
         } else {
-            throw new CarNotFoundexption();
+            throw new CarRentedException();
         }
-
-
     }
+
 
     public boolean checkAvailable(Date date, Date endDate) {
 
-        if (date == null)
-        {
+        if (date == null) {
             return true;
         }
 
@@ -70,4 +52,21 @@ public class CarService {
 
 
     }
+//    public boolean isPresent(Car car) {
+//
+//        if (date == null) {
+//            return true;
+//        }
+//
+//        return endDate.after(date);
+//
+//
+//    }
+//
+//    public boolean checkRentDetails(GetCarDetailsRequest request) {
+//    if(request.getEndDate() == null || request.getCustomerName() == null &|| request.getId() == null)
+//    {
+//
+//    }
+//    }
 }

@@ -6,7 +6,7 @@
 //
 
 
-package com.soap;
+package com.soap.producer.generated;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -37,11 +37,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarDetailsRequest }
+     * Create an instance of {@link CarDto }
      * 
      */
-    public GetCarDetailsRequest createGetCarDetailsRequest() {
-        return new GetCarDetailsRequest();
+    public CarDto createGetCarDetailsRequest() {
+        return new CarDto();
     }
 
     /**

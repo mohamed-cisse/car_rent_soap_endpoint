@@ -1,4 +1,4 @@
-package com.soap.producer.errorHandler;
+package com.soap.producer.errorhandler;
 
 public class ErrorResponse {
     private String message;

@@ -1,13 +1,12 @@
 package com.soap.producer.database;
 
-import com.soap.Car;
+import com.soap.producer.generated.Car;
 import com.soap.producer.repository.CarRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component

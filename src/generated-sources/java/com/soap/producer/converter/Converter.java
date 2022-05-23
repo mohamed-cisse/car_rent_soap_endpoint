@@ -1,7 +1,7 @@
-package com.soap.producer;
+package com.soap.producer.converter;
 
-import com.soap.producer.dto.GetCarDetailsRequest;
-import com.soap.producer.errorHandler.MissingRentDataException;
+import com.soap.producer.generated.CarDto;
+import com.soap.producer.errorhandler.MissingRentDataException;
 import com.soap.producer.generated.Car;
 import org.springframework.stereotype.Component;
 
@@ -11,37 +11,37 @@ import java.util.stream.Collectors;
 @Component
 public class Converter {
 
-    public GetCarDetailsRequest entityToDto(Car car) {
-        GetCarDetailsRequest carDto = new GetCarDetailsRequest();
+    public CarDto entityToDto(Car car) {
+        CarDto carDto = new CarDto();
         carDto.setId(car.getId());
         carDto.setCustomerName(car.getCustomerName());
         carDto.setEndDate(car.getEndDate());
-        carDto.setModel(carDto.getModel());
+        carDto.setModel(car.getModel());
 
         return carDto;
     }
 
-    public Car DtoToEntity(GetCarDetailsRequest carDto) {
+    public Car DtoToEntity(CarDto carDto) {
         Car car = new Car();
         if (isEmpty(carDto)) {
             car.setId(carDto.getId());
             car.setCustomerName(carDto.getCustomerName());
             car.setEndDate(carDto.getEndDate());
             car.setModel(carDto.getModel());
-        }
+        }else throw new MissingRentDataException();
         return car;
     }
 
-    public List<GetCarDetailsRequest> entityToDtoList(List<Car> cars) {
+    public List<CarDto> entityToDtoList(List<Car> cars) {
         return cars.stream().map(car -> entityToDto(car)).collect(Collectors.toList());
     }
 
-    public List<Car> DtoToEntityList(List<GetCarDetailsRequest> carDtos) {
+    public List<Car> DtoToEntityList(List<CarDto> carDtos) {
         return carDtos.stream().map(carDto -> DtoToEntity(carDto)).collect(Collectors.toList());
     }
 
-    public boolean isEmpty(GetCarDetailsRequest dto) {
-        if (dto.getId() <= 0 || dto.getCustomerName() == null || dto.getEndDate() == null) {
+    public boolean isEmpty(CarDto dto) {
+        if (dto.getId()<=0  || dto.getCustomerName().isEmpty() || dto.getEndDate() == null) {
             throw new MissingRentDataException();
         } else return true;
     }

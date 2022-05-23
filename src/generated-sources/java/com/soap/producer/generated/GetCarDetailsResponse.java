@@ -6,7 +6,7 @@
 //
 
 
-package com.soap;
+package com.soap.producer.generated;
 
 import java.util.ArrayList;
 import java.util.List;

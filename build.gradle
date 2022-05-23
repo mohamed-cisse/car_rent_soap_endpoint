@@ -48,7 +48,7 @@ dependencies {
 
 //task jaxb {
 //    System.setProperty('javax.xml.accessExternalSchema', 'all')
-//    def jaxbTargetDir = file("src/generated-sources/java")
+//    def jaxbTargetDir = file("src/generated-sources/java/generated")
 //
 //    doLast {
 //        jaxbTargetDir.mkdirs()

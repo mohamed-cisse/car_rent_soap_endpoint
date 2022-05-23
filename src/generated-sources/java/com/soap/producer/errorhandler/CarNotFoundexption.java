@@ -1,7 +1,6 @@
-package com.soap.producer.errorHandler;
+package com.soap.producer.errorhandler;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 
