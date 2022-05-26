@@ -1,6 +1,6 @@
 package com.soap.producer.database;
 
-import com.soap.producer.generated.Car;
+import com.soap.producer.domain.Car;
 import com.soap.producer.repository.CarRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

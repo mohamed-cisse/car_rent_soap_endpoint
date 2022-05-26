@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <title> Car renting</title>
+</head>
+
+<body>
+<!--<nav th:replace="~{layouts/main_layout :: nav}"></nav>-->
+<!--<div th:replace="~{layouts/main_layout :: jumbotron}"></div>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<form id="renting-form" role="form" method="POST" action="rent"  >
+    <div  class="form-title" style="padding-left: 37%">
+         <h2>please enter your data to rent car</h2>
+    </div>
+    <div class="form-data"style="width: min-content; padding-left: 45%">
+
+        <label>Car id</label>
+        <input type="text" name="id" class="form-control" id="carId"
+                               placeholder="John Doe" required autofocus style="margin: 10px ; ">
+    <br>
+        <label>Rent end Date </label>
+        <input type="text" name="endDate" class="form-control" id="EndDate"
+           placeholder="John Doe" required autofocus style="margin: 10px ;">
+    </div>
+    <div class="submit-button" style="padding-left: 50%">
+            <button type="submit" class="btn-success"></i> Rent</button>
+    </div>
+</form>
+
+</body>
+<script>
+    const serialize_form = form => JSON.stringify(
+        Array.from(new FormData(form).entries())
+            .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+    );
+    //
+    // $('#renting-form').on('submit', function(event) {
+    //     event.preventDefault();
+    //     const json = serialize_form(this);
+    //     console.log(json);
+    //     $.ajax({
+    //        type: 'POST',
+    //        url: 'https://localhost:9999/rent',
+    //        dataType: 'json',
+    //        data: json,
+    //        contentType: 'application/json',
+    //
+    //      });
+   // });
+</script>
+</html>

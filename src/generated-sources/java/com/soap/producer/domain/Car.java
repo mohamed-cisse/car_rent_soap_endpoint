@@ -6,15 +6,12 @@
 //
 
 
-package com.soap.producer.generated;
+package com.soap.producer.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Date;
 
 
@@ -57,6 +54,8 @@ public class Car {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     protected Date endDate;
     protected String customerName;
+    @XmlTransient
+    protected String customerEmail;
 
     /**
      * Gets the value of the id property.
@@ -146,4 +145,11 @@ public class Car {
         this.customerName = value;
     }
 
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
 }

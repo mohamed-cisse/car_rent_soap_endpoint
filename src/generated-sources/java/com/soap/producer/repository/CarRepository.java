@@ -1,6 +1,6 @@
 package com.soap.producer.repository;
 
-import com.soap.producer.generated.Car;
+import com.soap.producer.domain.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 

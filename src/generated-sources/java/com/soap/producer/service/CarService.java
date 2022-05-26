@@ -2,7 +2,7 @@ package com.soap.producer.service;
 
 import com.soap.producer.errorhandler.CarNotFoundexption;
 import com.soap.producer.errorhandler.CarRentedException;
-import com.soap.producer.generated.Car;
+import com.soap.producer.domain.Car;
 import com.soap.producer.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +34,7 @@ public class CarService {
         if (checkAvailable(carTemp.getEndDate(), car.getEndDate())) {
             carTemp.setEndDate(car.getEndDate());
             carTemp.setCustomerName(car.getCustomerName());
+            carTemp.setCustomerEmail(car.getCustomerEmail());
             carRepository.save(carTemp);
             return car;
         } else {

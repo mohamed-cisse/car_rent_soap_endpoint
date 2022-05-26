@@ -6,20 +6,17 @@
 //
 
 
-package com.soap.producer.generated;
+package com.soap.producer.domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Date;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -34,16 +31,9 @@ import java.util.Date;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "model",
-    "id",
-    "customerName",
-    "endDate"
-})
+@XmlType(name = "", propOrder = {"model", "id", "customerName", "endDate"})
 @XmlRootElement(name = "getCarDetailsRequest")
 public class CarDto {
 
@@ -51,14 +41,14 @@ public class CarDto {
     protected Integer id;
     protected String customerName;
     protected Date endDate;
+    @XmlTransient
+    protected String customerEmail;
 
     /**
      * Gets the value of the model property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getModel() {
         return model;
@@ -66,11 +56,9 @@ public class CarDto {
 
     /**
      * Sets the value of the model property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setModel(String value) {
         this.model = value;
@@ -78,11 +66,9 @@ public class CarDto {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     *
+     * @return possible object is
+     * {@link Integer }
      */
     public Integer getId() {
         return id;
@@ -90,11 +76,9 @@ public class CarDto {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Integer }
      */
     public void setId(Integer value) {
         this.id = value;
@@ -102,11 +86,9 @@ public class CarDto {
 
     /**
      * Gets the value of the customerName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCustomerName() {
         return customerName;
@@ -114,11 +96,9 @@ public class CarDto {
 
     /**
      * Sets the value of the customerName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCustomerName(String value) {
         this.customerName = value;
@@ -126,11 +106,9 @@ public class CarDto {
 
     /**
      * Gets the value of the endDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public Date getEndDate() {
         return endDate;
@@ -138,14 +116,21 @@ public class CarDto {
 
     /**
      * Sets the value of the endDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setEndDate(Date value) {
         this.endDate = value;
     }
 
+    public String getCustomerEmail() {
+
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+
+    }
 }
