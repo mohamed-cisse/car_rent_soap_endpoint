@@ -1,7 +1,7 @@
-package com.soap.producer.database;
+package com.soap.producer.loader;
 
 import com.soap.producer.domain.Car;
-import com.soap.producer.repository.CarRepository;
+import com.soap.producer.repo.CarRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +14,8 @@ import java.util.List;
 public class DatabaseLoader implements CommandLineRunner {
 
     private CarRepository carRepository;
+
+
     public DatabaseLoader(CarRepository carRepository) {
         this.carRepository=carRepository;
     }

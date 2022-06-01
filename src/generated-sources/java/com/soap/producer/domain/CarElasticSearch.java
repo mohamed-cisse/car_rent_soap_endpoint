@@ -9,10 +9,13 @@
 package com.soap.producer.domain;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Setting;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.Date;
 
@@ -46,15 +49,21 @@ import java.util.Date;
     "endDate",
     "customerName"
 })
-@Entity
 
-public class Car {
+@Document(indexName = "car")
+@RequiredArgsConstructor
+@Setting(settingPath = "static/es-settings.json")
+public class CarElasticSearch {
     @Id
+    @Field(type = FieldType.Keyword)
     protected int id;
+    @Field(type = FieldType.Text)
     @XmlElement(required = true)
     protected String model;
+    @Field(type = FieldType.Date)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     protected Date endDate;
+    @Field(type = FieldType.Text)
     protected String customerName;
     @XmlTransient
     protected String customerEmail;

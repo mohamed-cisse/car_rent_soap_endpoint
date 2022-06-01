@@ -3,7 +3,7 @@ package com.soap.producer.service;
 import com.soap.producer.errorhandler.CarNotFoundexption;
 import com.soap.producer.errorhandler.CarRentedException;
 import com.soap.producer.domain.Car;
-import com.soap.producer.repository.CarRepository;
+import com.soap.producer.repo.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
