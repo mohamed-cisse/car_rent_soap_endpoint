@@ -2,9 +2,10 @@ package com.soap.producer.controller;
 
 import com.soap.producer.converter.Converter;
 import com.soap.producer.domain.CarDto;
-import com.soap.producer.domain.CarElasticSearch;
+import com.soap.producer.elasticsearch.domain.CarElasticSearch;
+import com.soap.producer.elasticsearch.searchrequest.ElasticDTO;
 import com.soap.producer.service.CarService;
-import com.soap.producer.service.ElasticService;
+import com.soap.producer.elasticsearch.service.ElasticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -47,10 +48,9 @@ public class CarController {
         return converter.entityToDto(carService.rentCar(converter.DtoToEntity(dto,user)));
 
     }
-    @PostMapping("/add")
-    public CarElasticSearch save(@RequestBody CarElasticSearch car)
-    {
-        return elasticService.save(car);
+    @PostMapping("/search")
+    public List<String> search(@RequestBody final ElasticDTO dto) {
+        return elasticService.autocomplete(dto);
     }
 
     @GetMapping("/me")

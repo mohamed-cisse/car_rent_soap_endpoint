@@ -1,8 +1,7 @@
-package com.soap.producer.loader;
+package com.soap.producer.elasticsearch.loader;
 
-import com.soap.producer.domain.Car;
-import com.soap.producer.domain.CarElasticSearch;
-import com.soap.producer.repository.ElasRepository;
+import com.soap.producer.elasticsearch.domain.CarElasticSearch;
+import com.soap.producer.elasticsearch.repository.ElasRepository;
 import com.soap.producer.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,4 +1,4 @@
-package com.soap.producer.config;
+package com.soap.producer.elasticsearch.config;
 
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -20,7 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.soap.producer.repo")
-@EnableElasticsearchRepositories(basePackages = "com.soap.producer.repository")
+@EnableElasticsearchRepositories(basePackages = "com.soap.producer.elasticsearch.repository")
 
 @ComponentScan(basePackages = {"com.soap.producer"})
 public class ElasticConfig extends AbstractElasticsearchConfiguration {

@@ -6,7 +6,7 @@
 //
 
 
-package com.soap.producer.domain;
+package com.soap.producer.elasticsearch.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -57,7 +57,7 @@ public class CarElasticSearch {
     @Id
     @Field(type = FieldType.Keyword)
     protected int id;
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Search_As_You_Type)
     @XmlElement(required = true)
     protected String model;
     @Field(type = FieldType.Date)
