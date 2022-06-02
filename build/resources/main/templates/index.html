@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <title> Car renting</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
 <!--<nav th:replace="~{layouts/main_layout :: nav}"></nav>-->
 <!--<div th:replace="~{layouts/main_layout :: jumbotron}"></div>-->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <form id="form" role="form" action="search" method="post">
     <div class="form-title" style="padding-left: 37%">
 <!--        <h2>please enter your data to rent car</h2>-->
@@ -16,7 +17,7 @@
     <div class="form-data" style="width: min-content; padding-left: 45%">
 
         <label>Car model</label>
-        <input type="text" name="searchTerm" class="form-control" id="carModel" list="cars"
+        <input type="text"  class="form-control" id="carModel" list="cars"
                placeholder="BMW" required autofocus style="margin: 10px ; " oninput="f()">
         <datalist id="cars"></datalist>
         <br>
@@ -24,52 +25,53 @@
         <!--        <input type="text" name="endDate" class="form-control" id="EndDate"-->
         <!--           placeholder="John Doe" required autofocus style="margin: 10px ;">-->
     </div>
-    <div class="submit-button" style="padding-left: 50%">
-        <button type="submit" class="btn-success"></i> Search</button>
-    </div>
+<!--    <div class="submit-button" style="padding-left: 50%">-->
+<!--        <button type="submit" class="btn-success"></i> Search</button>-->
+<!--    </div>-->
 </form>
 
 </body>
 <script>
     function f() {
 
-
         var searchTerm = document.querySelector("#carModel");
 
         data = {
             searchTerm: searchTerm.value
         };
-        var Form = this;
+        // var Form = this;
 
-        console.log(data);
-        $.ajax({
-            cache: false,
-            url: "search",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(data),
-            context: Form,
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            success: function (response) {
-                var min = 0,
-                    responseArr = response.toString().split(','),
-                    select = document.getElementById('cars');
-                $("#cars").empty();
-                for (var i = min; i <= responseArr.length; i++) {
-                    var opt = document.createElement('option');
-                    opt.value = responseArr[i];
-                    // opt.innerHTML = response;
-                    select.appendChild(opt);
+        //console.log(data);
+        if (searchTerm.value != "") {
+            $.ajax({
+                cache: false,
+                url: "search",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                //context: Form,
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                success: function (response) {
+                    var min = 0,
+                        responseArr = response.toString().split(','),
+                        select = document.getElementById('cars');
+                    $("#cars").empty();
+                    for (var i = min; i <= responseArr.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = responseArr[i];
+                        // opt.innerHTML = response;
+                        select.appendChild(opt);
+                    }
+
+                },
+                error: function () {
+                    $(this).html("Error!");
                 }
+            });
 
-            },
-            error: function () {
-                $(this).html("Error!");
-            }
-        });
-
+        }
     }
 //function f() {
 
