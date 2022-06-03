@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ElasticService {
@@ -23,16 +24,10 @@ public class ElasticService {
 
     public List<String> autocomplete(ElasticDTO dto) {
 
-        return modelList(elasRepository.findByModelContaining(dto.getSearchTerm()));
-    }
-
-    public List<String> modelList(List<CarElasticSearch> cars) {
-        List<String> models = new ArrayList<String>();
-        for (CarElasticSearch car : cars) {
-            models.add(car.getModel());
-        }
-
-        return models;
+        return elasRepository.findByModelContaining(dto.getSearchTerm())
+                .stream()
+                .map(car -> car.getModel())
+                .collect(Collectors.toList());
     }
 
 }
