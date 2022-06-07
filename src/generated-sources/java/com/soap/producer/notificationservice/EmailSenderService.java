@@ -23,7 +23,7 @@ public class EmailSenderService {
         message.setText(body);
         message.setSubject(subject);
         javaMailSender.send(message);
-        System.out.println("Mail Sent successfully...");
+      //  System.out.println("Mail Sent successfully...");
 
 
     }

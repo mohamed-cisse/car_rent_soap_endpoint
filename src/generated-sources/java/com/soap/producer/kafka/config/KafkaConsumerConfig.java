@@ -1,10 +1,5 @@
 package com.soap.producer.kafka.config;
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.soap.producer.domain.Car;
-import com.soap.producer.domain.CarDto;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

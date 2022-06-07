@@ -19,18 +19,4 @@ public class SpringSoapProducerApp  {
 		SpringApplication.run(SpringSoapProducerApp.class, args);
 	}
 
-	//@Bean
-//	CommandLineRunner commandLineRunner(KafkaTemplate<String, String>kafkaTemplate)
-//	{
-//
-//		CarDto car1 = new CarDto();
-//		car1.setId(1);
-//		car1.setModel("Toyota");
-//
-//		ObjectMapper mapper = new ObjectMapper();
-//
-//		return args -> {
-//			kafkaTemplate.send("CarRenting",mapper.writeValueAsString(car1));
-//		};
-//	}
 }

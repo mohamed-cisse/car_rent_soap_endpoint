@@ -29,7 +29,7 @@ public class CarService {
     }
 
 
-     public  Car rentCar(Car car) {
+     public synchronized  Car rentCar(Car car) {
 
         Car carTemp = carRepository.findById(car.getId()).orElseThrow(() -> new CarNotFoundexption());
         if (!checkAvailable(carTemp.getEndDate(), car.getEndDate())) {
