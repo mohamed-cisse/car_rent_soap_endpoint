@@ -17,6 +17,7 @@ public class Converter {
 
         CarDto carDto = new CarDto();
         carDto.setId(car.getId());
+        carDto.setModel(car.getModel());
         carDto.setCustomerName(car.getCustomerName());
         carDto.setEndDate(car.getEndDate());
         carDto.setModel(car.getModel());

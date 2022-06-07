@@ -8,7 +8,12 @@
 
 package com.soap.producer.domain;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
+
 import javax.xml.bind.annotation.*;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -35,7 +40,7 @@ import java.util.Date;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {"model", "id", "customerName", "endDate"})
 @XmlRootElement(name = "getCarDetailsRequest")
-public class CarDto {
+public class CarDto implements Serializable {
 
     protected String model;
     protected Integer id;
@@ -133,4 +138,9 @@ public class CarDto {
         this.customerEmail = customerEmail;
 
     }
+
+
+
+
+
 }
